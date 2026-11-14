@@ -76,13 +76,13 @@ function convertChart(chart, onlyConvertSustains = false, sustainType = "legacy"
 			c = {song: c};
 		}
 
+		filesConverted++;
+
 		const convertedFile = new File([JSON.stringify(c, null, 4)], fileName);
 		const url = URL.createObjectURL(convertedFile);
 		const downloader = document.getElementById("downloader");
 		downloader.download = fileName;
 		downloader.href = url;
 		downloader.click();
-
-		filesConverted++;
 	}
 }
