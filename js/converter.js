@@ -1,9 +1,11 @@
 var charts = [];
 var filesConverted = 0;
+var filesTried = 0;
 var filesLimit = 0;
 document.getElementById("selector").addEventListener("change", function(e) {
 	if (e.target.files.length > 0) {
 		filesConverted = 0;
+		filesTried = 0;
 		filesLimit = e.target.files.length;
 		const onlyConvertSustains = document.getElementById("onlySustains").checked;
 		const sustainType = document.querySelector("input[name='sustainOption']:checked").id;
@@ -11,9 +13,6 @@ document.getElementById("selector").addEventListener("change", function(e) {
 		for (let i = 0; i < e.target.files.length; i++) {
 			convertChart(e.target.files[i], onlyConvertSustains, sustainType, convertAsEvent);
 		}
-		setTimeout(function() {
-			window.alert(`Successfully converted ${filesConverted}/${filesLimit} files`);
-		}, 100);
 	}
 });
 
@@ -24,6 +23,10 @@ function convertChart(chart, onlyConvertSustains = false, sustainType = "legacy"
 	reader.addEventListener("load", function() {
 		const parsed = JSON.parse(reader.result);
 		convert(parsed, onlyConvertSustains, sustainType, convertAsEvent);
+		filesTried++;
+		if (filesTried == filesLimit) {
+			window.alert(`Successfully converted ${filesConverted}/${filesLimit} files`);
+		}
 	});
 	reader.readAsText(chart);
 
