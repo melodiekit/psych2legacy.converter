@@ -1,0 +1,46 @@
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Psych 1.0 to Legacy Chart Converter</title>
+	<link rel="stylesheet" href="css/box.css">
+	<link rel="stylesheet" href="css/options.css">
+	<link rel="icon" href="assets/images/logo.png" type="image/x-icon">
+  </head>
+
+  <body style="background-color: #99B9E5; display: inline; font-family: Comic Sans MS; color: white; text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000, 1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;">
+	<h1 style="display: flex;
+		justify-content: center;
+		align-items: center">Psych 1.0 to Legacy Chart Converter</h1>
+	<div class="box">
+		<canvas id="box" width="720" height="500" style="border: 10px solid #2D353A"></canvas>
+		<script src="js/boxBG.js"></script>
+		<img id="cat1" src="assets/images/cat.png" alt="cat1">
+		<img id="cat2" src="assets/images/cat.png" alt="cat2">
+		<div class="options">
+			<h1><label for="selector" class="customSelector">Select chart(s)</label></h1>
+			<input type="file" id="selector" accept=".json" multiple>
+			<a id="downloader" download style="display: none;"></a>
+			<script src="js/converter.js"></script>
+			<label for="onlySustains">Only Convert Sustains</label>
+			<input type="checkbox" id="onlySustains" onClick="showSustainOptions()"/>
+			<small><label id="legacySus" style="display: none;"><br>&nbsp;&nbsp;&nbsp;&nbsp;• Legacy (For 1.0 -> Legacy Charts)<input type="radio" name="sustainOption" checked="true" id="legacy"></label></small>
+			<small><label id="newSus" style="display: none;"><br>&nbsp;&nbsp;&nbsp;&nbsp;• New (For Legacy -> 1.0 Charts)<input type="radio" name="sustainOption" id="new"></label></small>
+			<script>
+				function showSustainOptions() {
+					var check = document.getElementById("onlySustains");
+					var legacy = document.getElementById("legacySus");
+					var legacyBox = document.getElementById("legacy");
+					var newSus = document.getElementById("newSus");
+					var newBox = document.getElementById("new");
+
+					legacy.style.display = legacyBox.style.display = newSus.style.display = newBox.style.display = check.checked == true ? "inline" : "none";
+				}
+			</script>
+			<br>
+			<label for="asEvent">Convert as Event</label>
+			<input type="checkbox" id="asEvent"/>
+		</div>
+	</div>
+  </body>
+</html>
