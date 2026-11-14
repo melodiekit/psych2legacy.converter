@@ -32,8 +32,8 @@ function convertChart(chart, onlyConvertSustains = false, sustainType = "legacy"
 
 	function convert(c, s, st, e) {
 		var oldChart = false;
-		if (!e && !Object.hasOwn(c, "song")) { // Most likely is an event file
-			window.alert(`File "${fileName}" is an event and cannot be converted as an event!`);
+		if (!e && !Object.hasOwn(c, "song")) { // Not valid chart file
+			window.alert(`File "${fileName}" is not a valid chart file!`);
 			return;
 		}
 		if (typeof(c.song) == "object") { // Old chart
