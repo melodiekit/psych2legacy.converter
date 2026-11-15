@@ -8,7 +8,7 @@ document.getElementById("selector").addEventListener("change", function(e) {
 		filesTried = 0;
 		filesLimit = e.target.files.length;
 		const onlyConvertSustains = document.getElementById("onlySustains").checked;
-		const sustainType = document.querySelector("input[name='sustainOption']:checked").id;
+		const sustainType = onlyConvertSustains ? document.querySelector("input[name='sustainOption']:checked").id : "legacy";
 		const convertAsEvent = document.getElementById("asEvent").checked;
 		for (let i = 0; i < e.target.files.length; i++) {
 			convertChart(e.target.files[i], onlyConvertSustains, sustainType, convertAsEvent);
